@@ -13,13 +13,13 @@ error_reporting(E_ALL);
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-Router::resource("https://creertonbot-ab19d53aadb0.herokuapp.com/public", __DIR__ . '/public');
+Router::resource("{$_ENV['REMOTE_URI']}/public", __DIR__ . '/public');
 
-Router::any("https://creertonbot-ab19d53aadb0.herokuapp.com/telegram", function () {
+Router::any("{$_ENV['REMOTE_URI']}/telegram", function () {
     (new App())->resolve();
     Response::send(StatusCode::OK, 'Bot is working...');
 });
 
-Router::any("https://creertonbot-ab19d53aadb0.herokuapp.com", function () {
+Router::any("{$_ENV['REMOTE_URI']}", function () {
     echo "Ready to serve...";
 });
