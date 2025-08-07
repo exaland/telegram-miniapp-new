@@ -13,7 +13,7 @@ error_reporting(E_ALL);
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-Router::resource("https://creertonbot-ab19d53aadb0.herokuapp.com/public", __DIR__ . '/public');
+Router::resource("https://creertonbot-ab19d53aadb0.herokuapp.com", __DIR__ . '/public');
 
 Router::any("https://creertonbot-ab19d53aadb0.herokuapp.com/telegram", function () {
     (new App())->resolve();
