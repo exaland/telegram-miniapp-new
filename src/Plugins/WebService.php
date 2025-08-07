@@ -71,32 +71,25 @@ class WebService extends \TelegramBot\Plugin
      * @param string $order
      * @return string
      */
-protected function parseOrder(string $order = '[]'): string
-{
-    if ($order == '[]') {
-        return 'Nothing';
+    protected function parseOrder(string $order = '[]'): string
+    {
+        if ($order == '[]') {
+            return 'Nothing';
+        }
+
+        $order = json_decode($order, true);
+        $order_text = '';
+        foreach ($order as $item) {
+            $order_text .= (
+                $item['count'] . 'x ' .
+                $this->store_items[$item['id']]['name'] . ' ' .
+                $this->store_items[$item['id']]['emoji'] . ' $' .
+                ($this->store_items[$item['id']]['price'] * $item['count']) . "\n"
+            );
+        }
+        return $order_text;
     }
 
-    // Decode URL-encoded string before parsing JSON
-    $decodedOrder = urldecode($order);
-
-    $orderArray = json_decode($decodedOrder, true);
-    if (json_last_error() !== JSON_ERROR_NONE) {
-        // Handle JSON error if needed
-        return 'Invalid order data';
-    }
-
-    $order_text = '';
-    foreach ($orderArray as $item) {
-        $order_text .= (
-            $item['count'] . 'x ' .
-            $this->store_items[$item['id']]['name'] . ' ' .
-            $this->store_items[$item['id']]['emoji'] . ' $' .
-            ($this->store_items[$item['id']]['price'] * $item['count']) . "\n"
-        );
-    }
-    return $order_text;
-}
     /**
      * The available items in the store.
      *
