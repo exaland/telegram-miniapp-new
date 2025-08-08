@@ -57,7 +57,7 @@ class WebService extends \TelegramBot\Plugin
                 ...(!$webAppData->getRawData()['with_webview'] ? [] : [
                     'reply_markup' => InlineKeyboard::make()->setKeyboard([
                         [
-                            InlineKeyboardButton::make('Open WebApp')->setWebApp('https://creertonbot-ab19d53aadb0.herokuapp.com/public'),
+                            InlineKeyboardButton::make('Open WebApp')->setWebApp($_ENV['RESOURCE_BASE_URL']),
                         ]
                     ])
                 ])

@@ -1,3 +1,16 @@
 RewriteEngine On
-RewriteRule ^favicon\.ico$ favicon.ico [L]
+
+# Débogage - log des rewrites
+# RewriteLog /tmp/rewrite.log
+# RewriteLogLevel 3
+
+# Favicon direct
+RewriteRule ^favicon\.ico$ - [L]
+
+# Debug route
+RewriteRule ^debug$ service.php [QSA,L]
+
+# Si ce n'est pas un fichier existant, rediriger vers service.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ service.php [QSA,L]

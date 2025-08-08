@@ -34,7 +34,7 @@ class Commands extends \TelegramBot\Plugin
                 'text' => "*Let's get started* 🍟 \n\nPlease tap the button below to order your perfect lunch!",
                 'reply_markup' => InlineKeyboard::make()->setKeyboard([
                     [
-                        InlineKeyboardButton::make('Order Food')->setWebApp('https://creertonbot-ab19d53aadb0.herokuapp.com/public/'),
+                        InlineKeyboardButton::make('Order Food')->setWebApp($_ENV['RESOURCE_PATH']),
                     ]
                 ])
             ]);
@@ -47,7 +47,7 @@ class Commands extends \TelegramBot\Plugin
                 'text' => "Please tap the button below to open the web app!",
                 'reply_markup' => InlineKeyboard::make()->setKeyboard([
                     [
-                        InlineKeyboardButton::make('Test')->setWebApp('https://creertonbot-ab19d53aadb0.herokuapp.com/public/demo.php'),
+                        InlineKeyboardButton::make('Test')->setWebApp($_ENV['RESOURCE_PATH'] . '/demo.php'),
                     ]
                 ])
             ]);

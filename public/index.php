@@ -533,7 +533,7 @@
 <script src="js/cafe.js?version=<?php echo uniqid() ?>"></script>
 <script>
     Cafe.init({
-        "apiUrl": "<?php echo "https://creertonbot-ab19d53aadb0.herokuapp.com/telegram" ?>",
+        "apiUrl": "<?php echo 'https://solely-pet-grub.ngrok-free.app' . '/telegram' ?>",
         "userId": 0,
         "userHash": null
     });
